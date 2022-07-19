@@ -1,4 +1,4 @@
-package me.upskill.aop;
+package me.upskill.springtutorials.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -22,7 +22,7 @@ public class SecurityAspect {
     /**
      * This advice will run before any public methods
      */
-    @Before("me.upskill.aop.SecurityAspect.anyPublicOperation()")
+    @Before("me.upskill.springtutorials.aop.SecurityAspect.anyPublicOperation()")
     public void logMethodEntry(JoinPoint jp) {
         System.out.println("Security Method Entry ==> " + jp.getSignature().getName());
     }

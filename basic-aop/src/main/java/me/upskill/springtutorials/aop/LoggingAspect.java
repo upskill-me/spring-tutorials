@@ -1,4 +1,4 @@
-package me.upskill.aop;
+package me.upskill.springtutorials.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -36,7 +36,7 @@ public class LoggingAspect {
     /**
      * This advice will run before any public methods
      */
-    @Before("me.upskill.aop.LoggingAspect.anyPublicOperation()")
+    @Before("me.upskill.springtutorials.aop.LoggingAspect.anyPublicOperation()")
     public void logMethodEntry(JoinPoint jp) {
         System.out.println("Logging Method Entry ==> " + jp.getSignature().getName());
     }
@@ -44,7 +44,7 @@ public class LoggingAspect {
     /**
      * This advice will run after any public methods are returned successfully (without throwing exceptions)
      */
-    @AfterReturning(pointcut = "me.upskill.aop.LoggingAspect.anyPublicOperation()", returning = "val")
+    @AfterReturning(pointcut = "me.upskill.springtutorials.aop.LoggingAspect.anyPublicOperation()", returning = "val")
     public void logMethodExit(JoinPoint jp, Object val) {
         System.out.println("Successful Method Exit ==> " + jp.getSignature().getName() + " return val ==> " + val);
     }
@@ -52,7 +52,7 @@ public class LoggingAspect {
     /**
      * This advice will run after any public methods throw exceptions
      */
-    @AfterThrowing(pointcut = "me.upskill.aop.LoggingAspect.anyPublicOperation()", throwing = "ex")
+    @AfterThrowing(pointcut = "me.upskill.springtutorials.aop.LoggingAspect.anyPublicOperation()", throwing = "ex")
     public void logMethodFail(JoinPoint jp, Exception ex) {
         System.out.println("Exception Method Exit ==> " + jp.getSignature().getName() + " exception message ==> " + ex.getMessage());
     }
@@ -60,7 +60,7 @@ public class LoggingAspect {
     /**
      * This advice will run after any public methods are run (whether successfully or throws exceptions)
      */
-    @After("me.upskill.aop.LoggingAspect.anyPublicOperation()")
+    @After("me.upskill.springtutorials.aop.LoggingAspect.anyPublicOperation()")
     public void logMethodAfter(JoinPoint jp) {
         System.out.println("Either success or fail method Exit ==> " + jp.getSignature().getName());
     }
@@ -70,7 +70,7 @@ public class LoggingAspect {
      * It is the responsibility of advice to invoke the desired method
      * We can control if we want to invoke the method or not
      */
-    @Around("me.upskill.aop.LoggingAspect.anyPublicOperation()")
+    @Around("me.upskill.springtutorials.aop.LoggingAspect.anyPublicOperation()")
     public Object logMethodPerformance(ProceedingJoinPoint jp) throws Throwable {
         long start = System.currentTimeMillis();
         // this line can throw exception and hence wrap in try catch
@@ -95,7 +95,7 @@ public class LoggingAspect {
      * NOTE: Where ever this advice is applied the first before advice will also be applied
      * This just filters out only those methods which takes 3 arguments from all the public methods set
      */
-    @Before("me.upskill.aop.LoggingAspect.anyPublicOperation() && args(a,b,c)")
+    @Before("me.upskill.springtutorials.aop.LoggingAspect.anyPublicOperation() && args(a,b,c)")
     public void logMethodEntryWithArgs(JoinPoint jp, String a, Integer b, Integer c) {
         System.out.println("Method Entry ==> " + jp.getSignature().getName());
         System.out.println("First argument ==> " + a + " Second argument ==> " + b + " third argument ==> " + c);

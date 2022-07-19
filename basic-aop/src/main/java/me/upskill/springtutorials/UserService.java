@@ -1,4 +1,4 @@
-package me.upskill;
+package me.upskill.springtutorials;
 
 import org.springframework.stereotype.Component;
 

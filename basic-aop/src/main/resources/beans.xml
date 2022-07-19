@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         https://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy/>
+    <context:component-scan base-package="me.upskill.springtutorials"/>
+
+    <!-- the target bean to which advices will be applied -->
+    <bean id="xmlUserService" class="me.upskill.springtutorials.XMLUserService"/>
+
+    <!-- the advice bean -->
+    <bean id="beforeAdvice" class="me.upskill.springtutorials.aop.XMLAspect"/>
+
+    <aop:config>
+        <aop:aspect id="xmlAspect" ref="beforeAdvice">
+            <aop:before pointcut="within(me.upskill.springtutorials.XMLUserService)" method="before"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
