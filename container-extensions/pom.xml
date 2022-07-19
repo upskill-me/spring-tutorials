@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.upskill.springtutorials</groupId>
-    <artifactId>core-autowiring</artifactId>
+    <artifactId>container-extensions</artifactId>
     <version>1.0.0</version>
 
     <properties>

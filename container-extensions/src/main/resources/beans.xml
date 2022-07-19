@@ -8,8 +8,4 @@
          http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="me.upskill"/>
-
-    <bean id="autowiredBean" class="me.upskill.springtutorials.BeanB" autowire="byType">
-        <!-- no need to define <ref /> elements as we are using auto wiring -->
-    </bean>
 </beans>
