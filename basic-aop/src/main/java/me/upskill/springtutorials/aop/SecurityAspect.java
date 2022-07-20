@@ -15,7 +15,7 @@ public class SecurityAspect {
     /**
      * This pointcut targets any public method
      */
-    @Pointcut("execution(public * *(..))")
+    @Pointcut("within(me.upskill.springtutorials.UserService)")
     private void anyPublicOperation() {
     }
 

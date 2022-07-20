@@ -25,7 +25,7 @@ public class LoggingAspect {
     /**
      * This pointcut targets any public method
      */
-    @Pointcut("execution(public * *(..))")
+    @Pointcut("within(me.upskill.springtutorials.UserService)")
     private void anyPublicOperation() {
     }
 
@@ -97,7 +97,6 @@ public class LoggingAspect {
      */
     @Before("me.upskill.springtutorials.aop.LoggingAspect.anyPublicOperation() && args(a,b,c)")
     public void logMethodEntryWithArgs(JoinPoint jp, String a, Integer b, Integer c) {
-        System.out.println("Method Entry ==> " + jp.getSignature().getName());
-        System.out.println("First argument ==> " + a + " Second argument ==> " + b + " third argument ==> " + c);
+        System.out.println("Method Entry with args ==> " + jp.getSignature().getName() + " First argument ==> " + a + " Second argument ==> " + b + " third argument ==> " + c);
     }
 }

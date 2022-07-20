@@ -19,6 +19,8 @@ public class UserService {
     }
 
     public int argNamesEx(String a, int b, int c) {
+        // NOTE: self invocation here will not result in advices being called
+        getName();
         return b + c;
     }
 }

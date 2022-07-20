@@ -1,5 +1,6 @@
 package me.upskill.springtutorials;
 
+import me.upskill.springtutorials.aop.introductions.service.IService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -24,5 +25,9 @@ public class Main {
             XMLUserService xmlService = (XMLUserService) context.getBean("xmlUserService");
             xmlService.doProcessing();
         }
+
+        // fetch the introduction bean to which introductions are applied
+        IService iService = (IService) context.getBean("IService");
+        iService.process();
     }
 }
