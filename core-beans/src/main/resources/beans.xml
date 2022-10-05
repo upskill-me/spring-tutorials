@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="communicator" class="me.upskill.springtutorials.corebeans.components.impl.DefaultCommunicator">
+        <property name="emailSender">
+            <ref bean="emailSender" />
+        </property>
+
+        <property name="smsSender">
+            <ref bean="smsSender" />
+        </property>
+
+        <property name="whatsappSender">
+            <ref bean="whatsappSender" />
+        </property>
+
+        <property name="voiceCallSender">
+            <ref bean="voiceCallSender" />
+        </property>
+    </bean>
+
+    <bean id="smsSender" class="me.upskill.springtutorials.corebeans.components.impl.DefaultSmsSender" />
+    <bean id="whatsappSender" class="me.upskill.springtutorials.corebeans.components.impl.DefaultWhatsappSender" />
+    <bean id="voiceCallSender" class="me.upskill.springtutorials.corebeans.components.impl.DefaultVoiceCallSender" />
+
+    <bean id="emailSender" class="me.upskill.springtutorials.corebeans.components.impl.DefaultEmailSender">
+        <property name="sendgridSender">
+            <ref bean="sendgridSender" />
+        </property>
+
+        <property name="mailgunSender">
+            <ref bean="mailgunSender" />
+        </property>
+
+        <property name="smtpSender">
+            <ref bean="smtpSender" />
+        </property>
+    </bean>
+
+    <bean id="mailgunSender" class="me.upskill.springtutorials.corebeans.components.email.impl.DefaultMailgunSender" />
+    <bean id="sendgridSender" class="me.upskill.springtutorials.corebeans.components.email.impl.DefaultSendgridSender" />
+
+    <bean id="smtpSender" class="me.upskill.springtutorials.corebeans.components.email.impl.DefaultSmtpSender">
+        <property name="googleSmtpSender">
+            <ref bean="googleSmtpSender" />
+        </property>
+
+        <property name="awsSesSmtpSender">
+            <ref bean="awsSesSmtpSender" />
+        </property>
+
+        <property name="mySmtpSender">
+            <ref bean="mySmtpSender" />
+        </property>
+    </bean>
+
+    <bean id="googleSmtpSender" class="me.upskill.springtutorials.corebeans.components.email.smtp.impl.DefaultGoogleSmtpSender" />
+    <bean id="awsSesSmtpSender" class="me.upskill.springtutorials.corebeans.components.email.smtp.impl.DefaultAwsSesSmtpSender" />
+    <bean id="mySmtpSender" class="me.upskill.springtutorials.corebeans.components.email.smtp.impl.DefaultMySmtpSender" />
+
+</beans>
