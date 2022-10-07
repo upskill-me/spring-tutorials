@@ -6,11 +6,12 @@ import me.upskill.springtutorials.corebeans.components.SmsSender;
 import me.upskill.springtutorials.corebeans.components.VoiceCallSender;
 import me.upskill.springtutorials.corebeans.components.WhatsappSender;
 import me.upskill.springtutorials.corebeans.model.User;
+import org.springframework.beans.factory.DisposableBean;
 
 /**
  * Default implementation of communicator apis
  */
-public class DefaultCommunicator implements Communicator {
+public class DefaultCommunicator implements Communicator, DisposableBean {
 
     // hardcoding the communications body and subject
     // in reality these would be read from a config file
@@ -101,6 +102,16 @@ public class DefaultCommunicator implements Communicator {
     @Override
     public void communicateViaVoiceCall(User user) {
         voiceCallSender.sendVoiceCall(user.getMobileNumber(), VOICE_CALL_BODY);
+    }
+
+    // custom destroy method
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("Destroying communicator bean");
     }
 
     // getters and setters

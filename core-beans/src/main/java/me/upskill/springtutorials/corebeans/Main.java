@@ -5,6 +5,7 @@ import me.upskill.springtutorials.corebeans.config.AppConfig;
 import me.upskill.springtutorials.corebeans.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,6 +29,9 @@ public class Main {
         // comment the above line and uncomment below line if want to use xml configuration
         // ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         // get communicator bean
+
+        ((AbstractApplicationContext) context).registerShutdownHook();
+
         Communicator communicator = context.getBean("communicator", Communicator.class);
         // read inputs from console
         // making sure that streams are auto closed as program exists
