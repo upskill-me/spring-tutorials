@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.email.impl;
 
 import me.upskill.springtutorials.corebeans.components.email.SendgridSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of sendgrid sender apis
  */
+@Component
 public class DefaultSendgridSender implements SendgridSender {
 
     /**

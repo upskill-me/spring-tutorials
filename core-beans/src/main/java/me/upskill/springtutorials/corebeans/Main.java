@@ -26,13 +26,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // instantiate application context
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        // comment the above line and uncomment below line if want to use xml configuration
-        // ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        // get communicator bean
 
+        // register shutdown hook
         ((AbstractApplicationContext) context).registerShutdownHook();
 
-        Communicator communicator = context.getBean("communicator", Communicator.class);
+        Communicator communicator = context.getBean(Communicator.class);
         // read inputs from console
         // making sure that streams are auto closed as program exists
         // always a good practice

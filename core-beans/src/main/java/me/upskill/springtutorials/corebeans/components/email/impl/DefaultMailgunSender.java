@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.email.impl;
 
 import me.upskill.springtutorials.corebeans.components.email.MailgunSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of mailgun sender
  */
+@Component
 public class DefaultMailgunSender implements MailgunSender {
 
     /**

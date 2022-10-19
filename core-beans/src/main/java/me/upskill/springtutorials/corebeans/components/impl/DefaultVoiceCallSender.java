@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.impl;
 
 import me.upskill.springtutorials.corebeans.components.VoiceCallSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of voice call sender apis
  */
+@Component
 public class DefaultVoiceCallSender implements VoiceCallSender {
 
     @Override

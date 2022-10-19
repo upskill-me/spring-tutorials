@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.email.smtp.impl;
 
 import me.upskill.springtutorials.corebeans.components.email.smtp.GoogleSmtpSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of google smtp sender
  */
+@Component
 public class DefaultGoogleSmtpSender implements GoogleSmtpSender {
 
     /**

@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.impl;
 
 import me.upskill.springtutorials.corebeans.components.SmsSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of sms sender apis
  */
+@Component
 public class DefaultSmsSender implements SmsSender {
 
     @Override

@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.email.smtp.impl;
 
 import me.upskill.springtutorials.corebeans.components.email.smtp.MySmtpSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of my smtp sender
  */
+@Component
 public class DefaultMySmtpSender implements MySmtpSender {
 
     @Override

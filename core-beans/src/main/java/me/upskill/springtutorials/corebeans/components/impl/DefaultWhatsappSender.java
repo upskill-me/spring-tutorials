@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.impl;
 
 import me.upskill.springtutorials.corebeans.components.WhatsappSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of whatsapp sender apis
  */
+@Component
 public class DefaultWhatsappSender implements WhatsappSender {
 
     @Override

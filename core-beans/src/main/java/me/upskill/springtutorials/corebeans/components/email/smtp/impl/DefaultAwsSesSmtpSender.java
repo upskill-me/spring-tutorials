@@ -1,10 +1,12 @@
 package me.upskill.springtutorials.corebeans.components.email.smtp.impl;
 
 import me.upskill.springtutorials.corebeans.components.email.smtp.AwsSesSmtpSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of the aws ses smtp sender apis
  */
+@Component
 public class DefaultAwsSesSmtpSender implements AwsSesSmtpSender {
 
     @Override

@@ -4,18 +4,24 @@ import me.upskill.springtutorials.corebeans.components.email.SmtpSender;
 import me.upskill.springtutorials.corebeans.components.email.smtp.AwsSesSmtpSender;
 import me.upskill.springtutorials.corebeans.components.email.smtp.GoogleSmtpSender;
 import me.upskill.springtutorials.corebeans.components.email.smtp.MySmtpSender;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of smtp sender apis
  */
+@Component
 public class DefaultSmtpSender implements SmtpSender {
 
     // this bean depends on google, aws ses and my smtp senders, lets add them
 
+    @Autowired
     private GoogleSmtpSender googleSmtpSender;
 
+    @Autowired
     private AwsSesSmtpSender awsSesSmtpSender;
 
+    @Autowired
     private MySmtpSender mySmtpSender;
 
     /**
@@ -33,32 +39,5 @@ public class DefaultSmtpSender implements SmtpSender {
         } else {
             mySmtpSender.sendEmail(to, subject, body);
         }
-    }
-
-    // getters and setters for properties
-
-
-    public GoogleSmtpSender getGoogleSmtpSender() {
-        return googleSmtpSender;
-    }
-
-    public void setGoogleSmtpSender(GoogleSmtpSender googleSmtpSender) {
-        this.googleSmtpSender = googleSmtpSender;
-    }
-
-    public AwsSesSmtpSender getAwsSesSmtpSender() {
-        return awsSesSmtpSender;
-    }
-
-    public void setAwsSesSmtpSender(AwsSesSmtpSender awsSesSmtpSender) {
-        this.awsSesSmtpSender = awsSesSmtpSender;
-    }
-
-    public MySmtpSender getMySmtpSender() {
-        return mySmtpSender;
-    }
-
-    public void setMySmtpSender(MySmtpSender mySmtpSender) {
-        this.mySmtpSender = mySmtpSender;
     }
 }

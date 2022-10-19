@@ -7,11 +7,15 @@ import me.upskill.springtutorials.corebeans.components.VoiceCallSender;
 import me.upskill.springtutorials.corebeans.components.WhatsappSender;
 import me.upskill.springtutorials.corebeans.model.User;
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of communicator apis
  */
-public class DefaultCommunicator implements Communicator, DisposableBean {
+@Component
+public class DefaultCommunicator implements Communicator, InitializingBean, DisposableBean {
 
     // hardcoding the communications body and subject
     // in reality these would be read from a config file
@@ -48,6 +52,7 @@ public class DefaultCommunicator implements Communicator, DisposableBean {
      * this class is depending on this component
      * this is Dependency injected by spring
      */
+    @Autowired
     private EmailSender emailSender;
 
     /**
@@ -55,6 +60,7 @@ public class DefaultCommunicator implements Communicator, DisposableBean {
      * this class is depending on this component
      * this is Dependency injected by spring
      */
+    @Autowired
     private SmsSender smsSender;
 
     /**
@@ -62,6 +68,7 @@ public class DefaultCommunicator implements Communicator, DisposableBean {
      * this class is depending on this component
      * this is Dependency injected by spring
      */
+    @Autowired
     private WhatsappSender whatsappSender;
 
     /**
@@ -69,8 +76,18 @@ public class DefaultCommunicator implements Communicator, DisposableBean {
      * this class is depending on this component
      * this is Dependency injected by spring
      */
+    @Autowired
     private VoiceCallSender voiceCallSender;
 
+    /**
+     * This method will be invoked by spring on main thread
+     * do any initialization task here
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        // make sure not to run any long running tasks here
+        System.out.println("Initialization callback invoked on bean DefaultCommunicator");
+    }
     /**
      * {@inheritDoc}
      */
@@ -111,40 +128,6 @@ public class DefaultCommunicator implements Communicator, DisposableBean {
      */
     @Override
     public void destroy() throws Exception {
-        System.out.println("Destroying communicator bean");
-    }
-
-    // getters and setters
-
-    public EmailSender getEmailSender() {
-        return emailSender;
-    }
-
-    public void setEmailSender(EmailSender emailSender) {
-        this.emailSender = emailSender;
-    }
-
-    public SmsSender getSmsSender() {
-        return smsSender;
-    }
-
-    public void setSmsSender(SmsSender smsSender) {
-        this.smsSender = smsSender;
-    }
-
-    public WhatsappSender getWhatsappSender() {
-        return whatsappSender;
-    }
-
-    public void setWhatsappSender(WhatsappSender whatsappSender) {
-        this.whatsappSender = whatsappSender;
-    }
-
-    public VoiceCallSender getVoiceCallSender() {
-        return voiceCallSender;
-    }
-
-    public void setVoiceCallSender(VoiceCallSender voiceCallSender) {
-        this.voiceCallSender = voiceCallSender;
+        System.out.println("Destruction callback invoked on DefaultCommunication Bean. Destroying communicator bean");
     }
 }
