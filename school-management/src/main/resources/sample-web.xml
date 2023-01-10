@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file will not be picked up by any servlet container -->
+<!-- The reason being that it is nammed as sample-web.xml instead of web.xml -->
+<!-- It is named as such to show all aspects of web.xml configuration -->
+<!-- it is intended for educational purposes, servlets, filters and other declarations are fictitious -->
+<web-app>
+    <description>This is the description of the web app</description>
+    <display-name>This is the display name of the web app</display-name>
+
+    <!-- Servlet context init parameters -->
+    <context-param>
+        <param-name>ping</param-name>
+        <param-value>pong</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>database_name</param-name>
+        <param-value>school_management</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>Auth Filter</filter-name>
+        <filter-class>com.example.webapp.filter.AuthServlet</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>Log Filter</filter-name>
+        <filter-class>com.example.webapp.filter.LogServlet</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>info</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>Log Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>Auth Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>com.example.webapp.listener.MyServletContextListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>com.example.webapp.listener.MyHttpSessionListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>com.example.webapp.listener.MyServletRequestListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>SimpleServlet</servlet-name>
+        <servlet-class>com.example.webapp.servlet.SimpleServlet</servlet-class>
+        <load-on-startup>0</load-on-startup> <!-- containers load servlets as per this order -->
+    </servlet>
+
+    <servlet>
+        <servlet-name>ComplexServlet</servlet-name>
+        <servlet-class>com.example.webapp.servlet.ComplexServlet</servlet-class>
+        <!-- this servlet will be loaded second, the lower the no higher the order -->
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>hello</param-name>
+            <param-value>world</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>com.example.webapp.servlet.DownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SimpleServlet</servlet-name>
+        <url-pattern>/simple-servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ComplexServlet</servlet-name>
+        <url-pattern>/complex-servlet/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/*.pdf</url-pattern>
+    </servlet-mapping>
+
+    <!-- session configuration -->
+    <session-config>
+        <!-- specifies a session timeout of 60 minutes -->
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/not-found.html</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/generic-error.html</location>
+    </error-page>
+
+    <error-page>
+        <location>/default-error.html</location>
+    </error-page>
+
+    <mime-mapping>
+        <extension>pdf</extension>
+        <mime-type>application/pdf</mime-type>
+    </mime-mapping>
+
+    <default-context-path>/</default-context-path>
+
+    <request-character-encoding>UTF-8</request-character-encoding>
+
+    <response-character-encoding>UTF-8</response-character-encoding>
+</web-app>
